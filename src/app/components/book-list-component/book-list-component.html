@@ -1,0 +1,40 @@
+<h2>Tus Libros</h2>
+@if(books.length === 0) {
+    <p>No tienes libros agregados.</p>
+} @else {
+        @for (book of books; track book.id) {
+             <div class="book-card">
+                <!-- Contenido principal (izquierda) -->
+                <div class="book-content">
+                    <div class="book-header">
+                        <div>
+                            <h3 class="book-title">{{ book.title }}</h3>
+                            <p class="book-author">{{ book.author }}</p>
+                        </div>
+                        <span class="book-year">{{ book.year }}</span>
+                    </div>
+                    <div class="book-details">
+                        <div class="detail-item">
+                            <span class="detail-label">Estado</span>
+                            <span class="detail-value" 
+                                  [class.status-read]="book.isRead"
+                                  [class.status-unread]="!book.isRead">
+                                {{ book.isRead ? 'Leído' : 'Por Leer' }}
+                            </span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Calificación</span>
+                            <span class="detail-value">
+                                <span class="rating-stars">{{ book.rating }}/5</span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Imagen (derecha) -->
+                <div class="book-img">
+                    <img [src]="book.img" [alt]="book.title + ' Cover'">
+                </div>
+            </div>
+        }
+}

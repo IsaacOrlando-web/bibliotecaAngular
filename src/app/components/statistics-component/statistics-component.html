@@ -1,0 +1,57 @@
+<div class="stats-container">
+    <div class="libros-leidos">
+        <h2>📚 Libros Leídos</h2>
+        
+        <div class="cantidad-container">
+            <span class="cantidad-label">Cantidad:</span>
+            <span class="cantidad-leidos">{{librosLeidos.length}}</span>
+        </div>
+        
+        <div class="lista-libros">
+            @if(librosLeidos.length === 0) {
+                <div class="lista-vacia">
+                    <span class="lista-vacia-icon">😴</span>
+                    <p>No hay libros leídos todavía</p>
+                </div>
+            } @else {
+                @for(book of librosLeidos; track book.id) {
+                    <div class="libro-item">
+                        <div class="libro-titulo">{{book.title}}</div>
+                        <div class="libro-detalles">
+                            <span class="libro-autor">{{book.author}}</span>
+                            <span class="libro-year">{{book.year}}</span>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+
+    <div class="libros-noLeidos">
+        <h2>⏳ Libros por Leer</h2>
+        
+        <div class="cantidad-container">
+            <span class="cantidad-label">Cantidad:</span>
+            <span class="cantidad-leidos">{{librosNoLeidos.length}}</span>
+        </div>
+        
+        <div class="lista-libros">
+            @if(librosNoLeidos.length === 0) {
+                <div class="lista-vacia">
+                    <span class="lista-vacia-icon">🎉</span>
+                    <p>¡Todos los libros están leídos!</p>
+                </div>
+            } @else {
+                @for(book of librosNoLeidos; track book.id) {
+                    <div class="libro-item">
+                        <div class="libro-titulo">{{book.title}}</div>
+                        <div class="libro-detalles">
+                            <span class="libro-autor">{{book.author}}</span>
+                            <span class="libro-year">{{book.year}}</span>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</div>

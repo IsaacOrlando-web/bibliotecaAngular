@@ -1,0 +1,135 @@
+<!-- src/app/components/add-book/add-book.component.html -->
+<div class="form-container">
+  <h2 class="section-title">Agregar Nuevo Libro</h2>
+
+  <form [formGroup]="bookForm" (ngSubmit)="onSubmit()" class="book-form">
+    
+    <!-- Título -->
+    <div class="form-group">
+      <label for="title">Título del Libro *</label>
+      <input 
+        type="text" 
+        id="title" 
+        formControlName="title"
+        placeholder="Ej: Cien años de soledad"
+        class="form-control"
+        [class.error]="title?.invalid && title?.touched">
+      
+      @if (title?.invalid && title?.touched) {
+        <div class="error-message">
+          @if (title?.errors?.['required']) {
+            <span>El título es requerido</span>
+          }
+          @if (title?.errors?.['minlength']) {
+            <span>Mínimo 2 caracteres</span>
+          }
+        </div>
+      }
+    </div>
+
+    <!-- Autor -->
+    <div class="form-group">
+      <label for="author">Autor *</label>
+      <input 
+        type="text" 
+        id="author" 
+        formControlName="author"
+        placeholder="Ej: Gabriel García Márquez"
+        class="form-control"
+        [class.error]="author?.invalid && author?.touched">
+      
+      @if (author?.invalid && author?.touched) {
+        <div class="error-message">
+          @if (author?.errors?.['required']) {
+            <span>El autor es requerido</span>
+          }
+          @if (author?.errors?.['minlength']) {
+            <span>Mínimo 2 caracteres</span>
+          }
+        </div>
+      }
+    </div>
+
+    <!-- Año -->
+    <div class="form-group">
+      <label for="year">Año de Publicación *</label>
+      <input 
+        type="number" 
+        id="year" 
+        formControlName="year"
+        placeholder="Ej: 1967"
+        class="form-control"
+        [class.error]="year?.invalid && year?.touched">
+      
+      @if (year?.invalid && year?.touched) {
+        <div class="error-message">
+          @if (year?.errors?.['required']) {
+            <span>El año es requerido</span>
+          }
+          @if (year?.errors?.['min'] || year?.errors?.['max']) {
+            <span>El año debe ser entre 1000</span>
+          }
+        </div>
+      }
+    </div>
+
+    <!-- Imagen -->
+    <div class="form-group">
+      <label for="img">URL de la Portada *</label>
+      <input 
+        type="url" 
+        id="img" 
+        formControlName="img"
+        placeholder="Ej: https://ejemplo.com/portada.jpg"
+        class="form-control"
+        [class.error]="img?.invalid && img?.touched">
+      
+      @if (img?.invalid && img?.touched) {
+        <div class="error-message">
+          <span>La URL de la portada es requerida</span>
+        </div>
+      }
+    </div>
+
+    <!-- Estado de Lectura -->
+    <div class="form-group checkbox-group">
+      <label class="checkbox-label">
+        <input type="checkbox" formControlName="isRead">
+        <span class="checkmark"></span>
+        ¿Ya leíste este libro?
+      </label>
+    </div>
+
+    <!-- Calificación -->
+    <div class="form-group">
+      <label for="rating">Calificación (0-5)</label>
+      <input 
+        type="range" 
+        id="rating" 
+        formControlName="rating"
+        min="0" 
+        max="5" 
+        step="1"
+        class="rating-slider">
+      <div class="rating-value">{{ bookForm.get('rating')?.value }}/5</div>
+    </div>
+
+    <!-- Botones -->
+    <div class="form-actions">
+      <button 
+        type="submit" 
+        class="btn-primary"
+        [disabled]="bookForm.invalid">
+        Agregar Libro
+      </button>
+      
+      <button 
+        type="button" 
+        class="btn-secondary"
+        (click)="cancelar()">
+        Cancelar
+      </button>
+    </div>
+
+  </form>
+</div>

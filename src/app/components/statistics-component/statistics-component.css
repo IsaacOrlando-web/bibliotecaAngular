@@ -1,0 +1,260 @@
+/* Contenedor principal de estadísticas */
+.stats-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin: 40px 0;
+}
+
+/* Tarjetas de estadísticas */
+.libros-leidos,
+.libros-noLeidos {
+    background: white;
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e8e8e8;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.libros-leidos:hover,
+.libros-noLeidos:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
+}
+
+/* Encabezados con gradientes diferentes */
+.libros-leidos::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 6px;
+    background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);
+}
+
+.libros-noLeidos::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 6px;
+    background: linear-gradient(135deg, #e74c3c 0%, #e67e22 100%);
+}
+
+/* Títulos */
+.libros-leidos h2,
+.libros-noLeidos h2 {
+    color: #2c3e50;
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    font-weight: 700;
+    text-align: center;
+    position: relative;
+    padding-bottom: 15px;
+}
+
+.libros-leidos h2::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);
+    border-radius: 2px;
+}
+
+.libros-noLeidos h2::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(135deg, #e74c3c 0%, #e67e22 100%);
+    border-radius: 2px;
+}
+
+/* Contador de libros */
+.cantidad-container {
+    text-align: center;
+    margin-bottom: 25px;
+    padding: 15px;
+    border-radius: 15px;
+    background: #f8f9fa;
+}
+
+.libros-leidos .cantidad-container {
+    border: 2px solid #27ae60;
+    background: linear-gradient(135deg, #f0f9f0 0%, #e8f5e8 100%);
+}
+
+.libros-noLeidos .cantidad-container {
+    border: 2px solid #e74c3c;
+    background: linear-gradient(135deg, #fdf0f0 0%, #fde8e8 100%);
+}
+
+.cantidad-label {
+    font-size: 1rem;
+    color: #7f8c8d;
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+.cantidad-leidos {
+    font-size: 3rem;
+    font-weight: 800;
+    display: block;
+    line-height: 1;
+}
+
+.libros-leidos .cantidad-leidos {
+    color: #27ae60;
+    text-shadow: 2px 2px 4px rgba(39, 174, 96, 0.2);
+}
+
+.libros-noLeidos .cantidad-leidos {
+    color: #e74c3c;
+    text-shadow: 2px 2px 4px rgba(231, 76, 60, 0.2);
+}
+
+/* Lista de libros */
+.lista-libros {
+    max-height: 400px;
+    overflow-y: auto;
+    padding-right: 10px;
+}
+
+/* Scrollbar personalizado */
+.lista-libros::-webkit-scrollbar {
+    width: 6px;
+}
+
+.lista-libros::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+.lista-libros::-webkit-scrollbar-thumb {
+    background: #bdc3c7;
+    border-radius: 10px;
+}
+
+.lista-libros::-webkit-scrollbar-thumb:hover {
+    background: #95a5a6;
+}
+
+/* Items de libros */
+.libro-item {
+    background: white;
+    padding: 15px;
+    margin-bottom: 12px;
+    border-radius: 12px;
+    border-left: 4px solid;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    border: 1px solid #e8e8e8;
+}
+
+.libros-leidos .libro-item {
+    border-left-color: #27ae60;
+    background: linear-gradient(135deg, #f8fdf8 0%, #f0f9f0 100%);
+}
+
+.libros-noLeidos .libro-item {
+    border-left-color: #e74c3c;
+    background: linear-gradient(135deg, #fef8f8 0%, #fdf0f0 100%);
+}
+
+.libro-item:hover {
+    transform: translateX(5px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.libro-titulo {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #2c3e50;
+    margin-bottom: 5px;
+    line-height: 1.3;
+}
+
+.libro-detalles {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.9rem;
+    color: #7f8c8d;
+}
+
+.libro-autor {
+    font-style: italic;
+    font-weight: 500;
+}
+
+.libro-year {
+    background: #34495e;
+    color: white;
+    padding: 4px 10px;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+/* Estados vacíos */
+.lista-vacia {
+    text-align: center;
+    padding: 40px 20px;
+    color: #95a5a6;
+    font-style: italic;
+    background: #f8f9fa;
+    border-radius: 12px;
+    border: 2px dashed #bdc3c7;
+}
+
+.lista-vacia-icon {
+    font-size: 3rem;
+    margin-bottom: 15px;
+    display: block;
+}
+
+/* Responsive */
+@media (max-width: 968px) {
+    .stats-container {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .libros-leidos,
+    .libros-noLeidos {
+        padding: 25px;
+    }
+    
+    .libros-leidos h2,
+    .libros-noLeidos h2 {
+        font-size: 1.6rem;
+    }
+    
+    .cantidad-leidos {
+        font-size: 2.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .libro-detalles {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+    }
+    
+    .libro-year {
+        align-self: flex-end;
+    }
+}
